@@ -16,6 +16,7 @@ Requires:	python3-modules
 Requires:	python3-setuptools
 Requires:	rpm
 Provides:	rpm-pythonprov = 1:4.17
+Obsoletes:	rpm-pythonprov < 1:4.17
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

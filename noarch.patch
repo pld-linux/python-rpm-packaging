@@ -6,3 +6,25 @@ diff --color -urN rpm-4.16.0.orig/fileattrs/pythondist.attr rpm-4.16.0/fileattrs
  %__pythondist_requires	%{_rpmconfigdir}/pythondistdeps.py --requires
 -%__pythondist_path		/lib(64|x32)?/python[[:digit:]]\\.[[:digit:]]+/site-packages/[^/]+\\.(dist-info|egg-info|egg-link)$
 +%__pythondist_path		/(lib(64|x32)?|share)/python[[:digit:]]\\.[[:digit:]]+/site-packages/[^/]+\\.(dist-info|egg-info|egg-link)$
+--- python-rpm-packaging-main/fileattrs/python.attr.orig	2022-05-21 17:28:59.000000000 +0200
++++ python-rpm-packaging-main/fileattrs/python.attr	2022-05-21 17:43:01.508347378 +0200
+@@ -16,13 +16,17 @@
+     --    /PATH/OF/BUILDROOT/usr/lib/pythonMAJOR.MINOR/  and
+     --    /PATH/OF/BUILDROOT/usr/lib64/pythonMAJOR.MINOR/ and
+     --    /PATH/OF/BUILDROOT/usr/libx32/pythonMAJOR.MINOR/
++    --    /PATH/OF/BUILDROOT/usr/share/pythonMAJOR.MINOR/
+     -- generating a line of the form:
+     --    python(abi) = MAJOR.MINOR
+     local path = rpm.expand('%1')
+-    if path:match('/usr/lib%w*/python%d+%.%d+/.*') then
++    if path:match('/usr/(lib%w*|share)/python%d+%.%d+/.*') then
+         local requires = path:gsub('.*/usr/lib%w*/python(%d+%.%d+)/.*', 'python(abi) = %1')
+         print(requires)
++    elseif path:match('/usr/share/python%d+%.%d+/.*') then
++        local requires = path:gsub('.*/usr/share/python(%d+%.%d+)/.*', 'python(abi) = %1')
++        print(requires)
+     end
+ }
+ 
+-%__python_path ^((%{_prefix}/lib(64|x32)?/python[[:digit:]]+\\.[[:digit:]]+/.*\\.(py[oc]?|so))|(%{_bindir}/python[[:digit:]]+\\.[[:digit:]]+))$
++%__python_path ^((%{_prefix}/(lib(64|x32)?|share)/python[[:digit:]]+\\.[[:digit:]]+/.*\\.(py[oc]?|so))|(%{_bindir}/python[[:digit:]]+\\.[[:digit:]]+))$

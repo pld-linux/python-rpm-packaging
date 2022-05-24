@@ -1,12 +1,14 @@
+%define		gitcommit	a18ca48
+
 Summary:	Python macros, which simplifies creation of RPM packages with Python software
 Summary(pl.UTF-8):	Makra ułatwiające tworzenie pakietów RPM z programami napisanymi w Pythonie
 Name:		python-rpm-packaging
 Version:	1
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Base
-Source0:	https://github.com/rpm-software-management/python-rpm-packaging/archive/main/%{name}-%{version}.tar.gz
-# Source0-md5:	cee60e26bdd3977b5e64f6def07a1571
+Source0:	https://github.com/rpm-software-management/python-rpm-packaging/archive/%{gitcommit}/%{name}-%{version}.tar.gz
+# Source0-md5:	915891c1e0d04b6fc77d258b6201c181
 Patch0:		x32.patch
 Patch1:		noarch.patch
 URL:		https://github.com/rpm-software-management/python-rpm-packaging
@@ -31,7 +33,8 @@ Makra ułatwiające tworzenie pakietów RPM z programami napisanymi w
 Pythonie.
 
 %prep
-%setup -q -n %{name}-main
+%setup -q -c
+%{__mv} %{name}-%{gitcommit}*/* .
 %patch0 -p1
 %patch1 -p1
 

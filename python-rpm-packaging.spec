@@ -4,7 +4,7 @@ Summary:	Python macros, which simplifies creation of RPM packages with Python so
 Summary(pl.UTF-8):	Makra ułatwiające tworzenie pakietów RPM z programami napisanymi w Pythonie
 Name:		python-rpm-packaging
 Version:	1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Base
 Source0:	https://github.com/rpm-software-management/python-rpm-packaging/archive/%{gitcommit}/%{name}-%{version}.tar.gz
@@ -15,7 +15,7 @@ URL:		https://github.com/rpm-software-management/python-rpm-packaging
 BuildRequires:	rpm-build >= 4.6
 Requires:	python3
 Requires:	python3-modules
-Requires:	python3-setuptools
+Requires:	python3-packaging
 Requires:	rpm
 Provides:	rpm-pythonprov = 1:4.17
 Obsoletes:	rpm-pythonprov < 1:4.17

@@ -35,8 +35,8 @@ Pythonie.
 %prep
 %setup -q -c
 %{__mv} %{name}-%{gitcommit}*/* .
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %{__sed} -i -e '1s,/usr/bin/python,%{__python3},' scripts/pythondistdeps.py
 
